@@ -11,7 +11,7 @@ class Visualizer {
             scrolling: "no",
             overflow: "hidden",
         });
-        this.iframe.src = "/extensions/stable-fast-3d/web/visualizer.html";
+        this.iframe.src = "/extensions/stable-point-aware-3d/web/visualizer.html";
         container.appendChild(this.iframe);
     }
 
@@ -29,7 +29,7 @@ class Visualizer {
 
 function createWidget(node, app) {
     const widget = {
-        type: "StableFast3DViewer",
+        type: "SPAR3DViewer",
         name: "preview",
         callback: () => { },
         draw: function (ctx, node, widgetWidth, widgetY, widgetHeight) {
@@ -106,7 +106,7 @@ function createWidget(node, app) {
 
 
 function registerVisualizer(nodeType, nodeData) {
-    if (nodeData.name !== "StableFast3DSave" && nodeData.name !== "StableFast3DPreview")
+    if (nodeData.name !== "SPAR3DSave" && nodeData.name !== "SPAR3DPreview")
         return;
 
     const originalOnNodeCreated = nodeType.prototype.onNodeCreated;
@@ -126,7 +126,7 @@ function registerVisualizer(nodeType, nodeData) {
 }
 
 app.registerExtension({
-    name: "StableFast3D.Visualizer",
+    name: "SPAR3D.Visualizer",
     async init(app) { },
     async beforeRegisterNodeDef(nodeType, nodeData, app) {
         registerVisualizer(nodeType, nodeData);
